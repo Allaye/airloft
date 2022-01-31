@@ -10,7 +10,7 @@ class JwtAuthentication(BaseAuthentication):
         '''
         implementation authenication method to authenticate users token
         '''
-        # get the authroization header from the request
+        # get the authorization header from the request
         auth_header = get_authorization_header(request)
 
         # decode the auth_header and get the token by spliting it
@@ -43,4 +43,4 @@ class JwtAuthentication(BaseAuthentication):
             raise exceptions.AuthenticationFailed('User does not exist, are you sure this account belong to you?')
 
 
-        return super().authenticate(request)
+        # return super().authenticate(request)
