@@ -42,4 +42,19 @@ class TestEmployeeUseCase(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
     
 
-    
+    def test_create_and_auth_user(self):
+        """test case to test if a user can create account with the endpoint"""
+        
+        account_creation_data = {
+            'username': 'admin',
+            'password': 'admin',
+            'email': 'admin@user.com',
+            'is_staff': 1
+        }
+        login_data = {
+            'email': 'admin@user.com',
+            'password': 'admin'
+        }
+        self.client.post(reverse("register"), account_creation_data, format='json')
+        response = self.client.post(reverse("login"), login_data, format='json')
+        self.assertEqual(response.status_code, status.HTTP_202_ACCEPTED)
