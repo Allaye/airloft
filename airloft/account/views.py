@@ -32,3 +32,17 @@ class RegisterApiView(GenericAPIView):
             serializer.save()
             return response.Response(serializer.data, status=status.HTTP_201_CREATED)
         return response.Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+class LoginApiView(GenericAPIView):
+    authentication_classes = []
+    serializer_class = LoginApiViewSerializer
+
+    def post(self, request):
+        email = request.data.get('email', None)
+        password = request.data.get('password', None)
+         
+        user = authenticate(username=email, password=password)
+        if user:
+            serializer = self.serializer_class(user)
+            return response.Response(serializer.data, status=status.HTTP_202_ACCEPTED)
+        return response.Response({'message': 'Bad login credentials'}, status=status.HTTP_401_UNAUTHORIZED)
