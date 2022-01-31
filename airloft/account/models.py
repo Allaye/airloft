@@ -9,6 +9,7 @@ from django.contrib.auth.models import (PermissionsMixin, UserManager, AbstractB
 from utils.models import ModelTracker
 
 
+# Django Usermanger
 class ManageUser(UserManager):
     def _create_user(self, username, email, password, **extra_fields):
         """
@@ -43,7 +44,7 @@ class ManageUser(UserManager):
         return self._create_user(username, email, password, **extra_fields)
 
 
-# Create your models here.
+# Create User models here.
 class User(AbstractBaseUser, PermissionsMixin, ModelTracker):
     username_validator = UnicodeUsernameValidator()
 
