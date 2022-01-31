@@ -44,7 +44,7 @@ class ManageUser(UserManager):
 
 
 # Create your models here.
-class Employee(AbstractBaseUser, PermissionsMixin, ModelTracker):
+class User(AbstractBaseUser, PermissionsMixin, ModelTracker):
     username_validator = UnicodeUsernameValidator()
 
     username = models.CharField(_('username'), max_length=150, unique=True, help_text='Required, 150 characters or fewer', error_messages={'unique':'a User with this user name is already registered'}, validators=[username_validator])
