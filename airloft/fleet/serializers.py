@@ -1,3 +1,4 @@
+from dataclasses import fields
 from rest_framework import serializers
 from fleet.models import Aircraft, Airport, Flight
 
@@ -11,3 +12,11 @@ class AirPortSerializer(serializers.ModelSerializer):
 
 
 
+class AircraftSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Aircraft
+        fields = '__all__'
+
+
+    
