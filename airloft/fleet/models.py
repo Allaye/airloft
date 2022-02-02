@@ -3,6 +3,7 @@ from datetime import datetime, timezone, timedelta, date
 from django.db import models
 from django.utils.functional import cached_property
 from account.models import User
+from utils.icao import ICAO
 # Create your models here.
 
 def generate_uuid():
@@ -10,6 +11,15 @@ def generate_uuid():
     generate a unique id using uuid whenever a new aircraft is created
     '''
     return uuid.uuid4()
+def generate_icao(airport):
+    '''
+    generate a unique icao code whenever a new airport is created, 
+    that represent the airport, this code is going to be unique for 
+    each airport.
+    '''
+    return ICAO[airport]
+
+print(generate_icao('ABE'))
 
 # Create your models here.
 class Aircraft(models.Model):
@@ -40,6 +50,8 @@ class Aircraft(models.Model):
 class Airport(models.Model):
     id = models.AutoField(primary_key=True)
     location = models.TextField(blank=False, null=False, max_length=400, default="")
+    name = models.CharField(blank=False, null=False, unique=True, max_length=200)
+    code = models.CharField(max_length=100, unique=True, default=generate_icao(name))
     # type = models.ForeignKey(to=Project, on_delete=models.CASCADE)
     # arriral = models.ForeignKey(to=Employee, on_delete=models.CASCADE)
     # departing = models.DateTimeField(auto_now_add=True)
