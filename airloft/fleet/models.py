@@ -1,14 +1,21 @@
+import uuid
 from datetime import datetime, timezone, timedelta, date
 from django.db import models
 from django.utils.functional import cached_property
 from account.models import User
 # Create your models here.
 
+def generate_uuid():
+    '''
+    generate a unique id using uuid whenever a new aircraft is created
+    '''
+    return uuid.uuid4()
 
 # Create your models here.
 class Aircraft(models.Model):
     id = models.AutoField(primary_key=True)
-    manufacturer = models.CharField(max_length=200)
+    serial_number = models.CharField(max_length=100, unique=True, default=generate_uuid)
+    manufacturer = models.CharField(blank=False, null=False, max_length=200)
     model = models.TextField(blank=False, null=False, max_length=400, default="")
     #technology = models.JSONField()
     #members = models.ManyToManyField(User, related_name='all_members')
