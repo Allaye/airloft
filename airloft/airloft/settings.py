@@ -124,3 +124,5 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'account.User'
+# DATETIME_FORMAT = '%Y-%m-%d %H:%M'
+USE_L10N = False
