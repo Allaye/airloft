@@ -1,4 +1,3 @@
-from dataclasses import fields
 from rest_framework import serializers
 from fleet.models import Aircraft, Airport, Flight
 
@@ -17,20 +16,17 @@ class AircraftSerializer(serializers.ModelSerializer):
 
 
 class FlightSerializer(serializers.ModelSerializer):
-    # aircraft = serializers.RelatedField(read_only=True)
-    # departure_airport = serializers.StringRelatedField(many=False)
-    # arrival_airport = serializers.StringRelatedField(many=False)
-    # aircraft = serializers.StringRelatedField(many=False)
+    
     aircraft = serializers.SlugRelatedField(
         slug_field="name", queryset=Aircraft.objects.all()
     )
 
-    # departure_airport = serializers.SlugRelatedField(
-    #     slug_field="name", queryset=Airport.objects.all()
-    # )
-    # arrival_airport = serializers.SlugRelatedField(
-    #     slug_field="name", queryset=Airport.objects.all()
-    # )
+    departure_airport = serializers.SlugRelatedField(
+        slug_field="name", queryset=Airport.objects.all()
+    )
+    arrival_airport = serializers.SlugRelatedField(
+        slug_field="name", queryset=Airport.objects.all()
+    )
 
 
     class Meta:
