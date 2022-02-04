@@ -3,6 +3,7 @@ from . import views
 
 
 urlpatterns = [
-    ############## Project ##############
-    # path("create/aircraft", views.CreateAircraftApiview.as_view(), name="add_airraft"),
+    path('register/', views.RegisterApiView.as_view(), name='register'),
+    path('login/', views.LoginApiView.as_view(), name='login'),
+    path('user/', views.AuthUserApiView.as_view(), name='user')
 ]
