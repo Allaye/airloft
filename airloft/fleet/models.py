@@ -53,6 +53,7 @@ class CustomDateTimeField(models.DateTimeField):
 # Create your models here.
 class Aircraft(models.Model):
     id = models.AutoField(primary_key=True)
+    name = models.CharField(max_length=100, blank=True, null=True)
     serial_number = models.CharField(max_length=100, unique=True, default=generate_uuid)
     manufacturer = models.CharField(blank=False, null=False, max_length=200)
     model = models.TextField(blank=False, null=False, max_length=400, default="")
@@ -61,6 +62,8 @@ class Aircraft(models.Model):
     # start_date = models.DateField(default=date.today())
     # end_date = models.DateField(blank=True, null=True)
 
+    def __str__(self):
+        return f"{self.manufacturer} {self.model}"
     # @property
     # def is_completed(self):
     #     """
@@ -80,6 +83,10 @@ class Airport(models.Model):
     name = models.CharField(blank=False, null=False, unique=True, max_length=200)
     code = models.CharField(max_length=100, blank=True, null=True)
 
+
+    def __str__(self):
+        return f"{self.name}"
+
     def save(self, *args, **kwargs):
         """
         Override the save method to generate a unique icao code
@@ -95,8 +102,8 @@ class Flight(models.Model):
     id = models.AutoField(primary_key=True)
     description = models.TextField(blank=False, null=False, max_length=400, default="")
     aircraft = models.ForeignKey(to=Aircraft, blank=True, null=True, on_delete=models.CASCADE)
-    departure_airport = models.ForeignKey(to=Airport, related_name="depart", on_delete=models.CASCADE)
-    arrival_airport = models.ForeignKey(to=Airport, related_name="arrive", on_delete=models.CASCADE)
+    departure_airport = models.ForeignKey(to=Airport, blank=True, null=True, related_name="depart", on_delete=models.CASCADE)
+    arrival_airport = models.ForeignKey(to=Airport, blank=True, null=True, related_name="arrive", on_delete=models.CASCADE)
     # user = models.ForeignKey(to=Employee, on_delete=models.CASCADE)
     departure_time = models.DateTimeField(validators=[validate_future_flight])
     arrival_time = models.DateTimeField(blank=False, null=False)
