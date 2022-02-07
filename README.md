@@ -153,9 +153,10 @@ This section contains all the useful endpoints this project provides.
         }
     
     - [x] Airloft endpoints
-#### Note: Access to this endpoints is restricted to authenticated users.
-#### creation of new objects require an admin previledge.
-#### retrival of objects require a user previledge.
+#### Note: 
+Access to this endpoints is restricted to authenticated users.
+creation of new objects require an admin previledge.
+retrival of objects require a user previledge.
 
       -[x] Create New Aircraft (can only be created by an admin)
           * POST /api/create/aircraft/
@@ -224,6 +225,30 @@ This section contains all the useful endpoints this project provides.
                         "name": "Atlantic City",
                         "code": "KACY"
                     },
+                  ]
+              }
+          -[x] Get all Flight
+            * GET /api/flight
+              response object:{
+                  "activities": [
+                    {
+                        "id": 1,
+                        "aircraft": "airforce 1",
+                        "departure_airport": "Atlantic City",
+                        "arrival_airport": "Santiago de Compostela",
+                        "description": "flight 1",
+                        "departure_time": "2022-02-07T12:00:00Z",
+                        "arrival_time": "2022-02-07T13:10:00Z"
+                    },
+                    {
+                      "id": 2,
+                      "aircraft": "lighten",
+                      "departure_airport": "Malamala",
+                      "arrival_airport": "Albany International",
+                      "description": "flight 2",
+                      "departure_time": "2022-02-08T12:00:00Z",
+                      "arrival_time": "2022-02-08T13:10:00Z"
+                  },
                   ]
               }
 
