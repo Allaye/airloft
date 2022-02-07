@@ -110,7 +110,7 @@ class UpdateFlightApiview(UpdateAPIView):
     serializer_class = FlightSerializer
     permission_classes = (IsAdminUser,)  # protect the endpoint
     queryset = Flight.objects.all()
-    fields = ["description", "aircraft", "departure_time", "arrival_time"]
+    fields = ["description", "aircraft", "departure_time", "arrival_time", "arrival_airport"]
 
     def perform_update(self, serializer):
         return serializer.save()
