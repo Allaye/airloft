@@ -10,6 +10,6 @@ urlpatterns = [
     path("flight/", views.RetriveFlightApiView.as_view(), name="flight_list"),
     path("aircraft/", views.RetriveAircraftApiView.as_view(), name="aircraft_list"),
     path("airport/", views.RetriveAirportApiView.as_view(), name="airport_list"),
-    path("flight/<int:pk>", views.RetriveFlightApiView.as_view(), name="flight_update"),
-    path("aircraft/<int:pk>", views.DestroyFlightApiview.as_view(), name="aircraft_delete"),
+    path("flight/update/<int:pk>", views.RetriveFlightApiView.as_view(), name="flight_update"),
+    path("flight/delete/<int:pk>", views.DestroyFlightApiview.as_view(), name="flight_delete"),
 ]

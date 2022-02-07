@@ -37,9 +37,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'fleet',
-    'account',
+    'account.apps.AccountConfig',
+    'fleet.apps.FleetConfig',
     'django_filters',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -126,4 +127,13 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'account.User'
 # DATETIME_FORMAT = '%Y-%m-%d %H:%M'
-USE_L10N = False
+# USE_L10N = False
+
+# rest_framework settings
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'account.jwt_engine.JwtAuthentication'
+    ],
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination'
+
+}
