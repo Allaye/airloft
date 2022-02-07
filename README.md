@@ -152,7 +152,10 @@ This section contains all the useful endpoints this project provides.
           requirement is to be loged in
         }
     
-    - [x] Project endpoints
+    - [x] Airloft endpoints
+## Note: Access to this endpoints is restricted to authenticated users.
+## creation of new objects require an admin previledge.
+## retrival of objects require a user previledge.
 
       -[x] Create New Aircraft (can only be created by an admin)
           * POST /api/create/aircraft/
